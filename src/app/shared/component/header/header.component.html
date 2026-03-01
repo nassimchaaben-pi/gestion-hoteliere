@@ -1,4 +1,64 @@
-<header class="app-header">
-  <div class="brand">Gestion Hospitalière</div>
-  <nav class="nav">Menu</nav>
-</header>
+<mat-toolbar class="app-toolbar" role="navigation">
+  <a class="brand" routerLink="/" aria-label="Retour à l'accueil">
+    <span class="logo">
+      <mat-icon>local_hospital</mat-icon>
+    </span>
+    <span class="brand-copy">
+      <strong>Gestion Hospitalière</strong>
+      <small>Suivi patient & clinique</small>
+    </span>
+  </a>
+
+  <nav *ngIf="!isCompact()" class="primary-nav" aria-label="Navigation principale">
+    <a
+      *ngFor="let link of navLinks"
+      mat-button
+      [routerLink]="link.path"
+      routerLinkActive="active"
+      [attr.aria-label]="link.label"
+    >
+      <mat-icon>{{ link.icon }}</mat-icon>
+      <span>{{ link.label }}</span>
+    </a>
+  </nav>
+
+  <div class="quick-actions" *ngIf="!isCompact()">
+    <button mat-stroked-button color="primary" routerLink="/patients/new">
+      <mat-icon>person_add</mat-icon>
+      Patient
+    </button>
+    <button mat-flat-button color="accent" routerLink="/payments/new">
+      <mat-icon>add_card</mat-icon>
+      Nouveau paiement
+    </button>
+  </div>
+
+  <button
+    *ngIf="isCompact()"
+    mat-icon-button
+    type="button"
+    class="menu-trigger"
+    [matMenuTriggerFor]="navMenu"
+    aria-label="Ouvrir le menu de navigation"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-menu #navMenu="matMenu">
+  <ng-container *ngFor="let link of navLinks">
+    <button mat-menu-item [routerLink]="link.path" [attr.aria-label]="link.label">
+      <mat-icon>{{ link.icon }}</mat-icon>
+      <span>{{ link.label }}</span>
+    </button>
+  </ng-container>
+  <mat-divider></mat-divider>
+  <button mat-menu-item routerLink="/patients/new">
+    <mat-icon>person_add</mat-icon>
+    Patient
+  </button>
+  <button mat-menu-item routerLink="/payments/new">
+    <mat-icon>add_card</mat-icon>
+    Nouveau paiement
+  </button>
+</mat-menu>

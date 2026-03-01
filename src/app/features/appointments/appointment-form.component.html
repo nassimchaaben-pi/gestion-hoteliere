@@ -1,3 +1,65 @@
 <section class="appointment-form">
-  <h2>Prendre / modifier un rendez-vous</h2>
+  <mat-card appearance="outlined">
+    <mat-card-header>
+      <div>
+        <mat-card-title>Planifier un rendez-vous</mat-card-title>
+        <mat-card-subtitle>Synchronisez patients et équipes en temps réel.</mat-card-subtitle>
+      </div>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+        <div class="form-grid">
+          <mat-form-field appearance="fill">
+            <mat-label>Patient</mat-label>
+            <mat-icon matPrefix>person_search</mat-icon>
+            <input matInput id="patient" formControlName="patient" />
+            <mat-hint>Nom complet ou identifiant interne.</mat-hint>
+            <mat-error *ngIf="form.get('patient')?.touched && form.get('patient')?.invalid">
+              Le patient est requis.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Date</mat-label>
+            <mat-icon matPrefix>event</mat-icon>
+            <input matInput id="date" type="date" formControlName="date" />
+            <mat-error *ngIf="form.get('date')?.touched && form.get('date')?.invalid">
+              Choisissez une date.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Heure</mat-label>
+            <mat-icon matPrefix>schedule</mat-icon>
+            <input matInput id="time" type="time" formControlName="time" />
+            <mat-error *ngIf="form.get('time')?.touched && form.get('time')?.invalid">
+              L'heure est obligatoire.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="span-two">
+            <mat-label>Motif</mat-label>
+            <textarea matInput id="reason" rows="3" formControlName="reason"></textarea>
+            <mat-hint>Ajoutez des notes visibles par l'équipe de soins.</mat-hint>
+          </mat-form-field>
+        </div>
+
+        <div class="form-actions">
+          <button mat-stroked-button type="button" (click)="form.reset()" [disabled]="submitting">
+            Annuler
+          </button>
+          <button mat-flat-button color="primary" type="submit" [disabled]="submitting">
+            <mat-icon>event_available</mat-icon>
+            <span>Enregistrer</span>
+            <mat-progress-spinner
+              *ngIf="submitting"
+              diameter="18"
+              mode="indeterminate"
+            ></mat-progress-spinner>
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
 </section>

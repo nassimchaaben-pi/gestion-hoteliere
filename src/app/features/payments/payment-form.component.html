@@ -1,3 +1,73 @@
 <section class="payment-form">
-  <h2>Mode de paiement / Encaissement</h2>
+  <mat-card appearance="outlined">
+    <mat-card-header>
+      <div>
+        <mat-card-title>Enregistrer un paiement</mat-card-title>
+        <mat-card-subtitle>Gardez un suivi transparent des transactions.</mat-card-subtitle>
+      </div>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+        <div class="form-grid">
+          <mat-form-field appearance="fill">
+            <mat-label>Patient</mat-label>
+            <mat-icon matPrefix>person</mat-icon>
+            <input matInput id="patient" formControlName="patient" />
+            <mat-error *ngIf="form.get('patient')?.touched && form.get('patient')?.invalid">
+              Sélectionnez un patient.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Montant</mat-label>
+            <span matPrefix>€&nbsp;</span>
+            <input matInput id="amount" type="number" step="0.01" min="0" formControlName="amount" />
+            <mat-error *ngIf="form.get('amount')?.touched && form.get('amount')?.invalid">
+              Montant invalide (> 0).
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Mode de paiement</mat-label>
+            <mat-select id="method" formControlName="method">
+              <mat-option value="cash">Espèces</mat-option>
+              <mat-option value="card">Carte bancaire</mat-option>
+              <mat-option value="transfer">Virement</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Date</mat-label>
+            <mat-icon matPrefix>calendar_today</mat-icon>
+            <input matInput id="date" type="date" formControlName="date" />
+            <mat-error *ngIf="form.get('date')?.touched && form.get('date')?.invalid">
+              Indiquez la date du paiement.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="span-two">
+            <mat-label>Notes</mat-label>
+            <textarea matInput id="notes" rows="3" formControlName="notes"></textarea>
+            <mat-hint>(optionnel) Référence, détail du règlement, etc.</mat-hint>
+          </mat-form-field>
+        </div>
+
+        <div class="form-actions">
+          <button mat-stroked-button type="button" (click)="form.reset({ method: 'cash' })" [disabled]="submitting">
+            Effacer
+          </button>
+          <button mat-flat-button color="primary" type="submit" [disabled]="submitting">
+            <mat-icon>payments</mat-icon>
+            <span>Enregistrer</span>
+            <mat-progress-spinner
+              *ngIf="submitting"
+              diameter="18"
+              mode="indeterminate"
+            ></mat-progress-spinner>
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
 </section>

@@ -1,4 +1,74 @@
 <section class="patient-form">
-  <h2>Formulaire patient</h2>
-  <!-- TODO: formulaire reactive/template-driven -->
+  <mat-card appearance="outlined">
+    <mat-card-header>
+      <div>
+        <mat-card-title>Créer un patient</mat-card-title>
+        <mat-card-subtitle>Centralisez les informations essentielles en quelques clics.</mat-card-subtitle>
+      </div>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+        <div class="form-grid">
+          <mat-form-field appearance="fill">
+            <mat-label>Prénom</mat-label>
+            <mat-icon matPrefix>badge</mat-icon>
+            <input matInput id="firstName" formControlName="firstName" autocomplete="given-name" />
+            <mat-error *ngIf="form.get('firstName')?.touched && form.get('firstName')?.invalid">
+              Le prénom est requis.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Nom</mat-label>
+            <mat-icon matPrefix>badge</mat-icon>
+            <input matInput id="lastName" formControlName="lastName" autocomplete="family-name" />
+            <mat-error *ngIf="form.get('lastName')?.touched && form.get('lastName')?.invalid">
+              Le nom est requis.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Date de naissance</mat-label>
+            <mat-icon matPrefix>calendar_month</mat-icon>
+            <input matInput id="dob" type="date" formControlName="dob" />
+            <mat-error *ngIf="form.get('dob')?.touched && form.get('dob')?.invalid">
+              La date de naissance est requise.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>E-mail</mat-label>
+            <mat-icon matPrefix>mail</mat-icon>
+            <input matInput id="email" type="email" formControlName="email" autocomplete="email" />
+            <mat-error *ngIf="form.get('email')?.touched && form.get('email')?.invalid">
+              Entrez une adresse e-mail valide.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Téléphone</mat-label>
+            <mat-icon matPrefix>call</mat-icon>
+            <input matInput id="phone" type="tel" formControlName="phone" autocomplete="tel" />
+          </mat-form-field>
+        </div>
+
+        <div class="form-actions">
+          <button mat-stroked-button type="button" (click)="form.reset()" [disabled]="submitting">
+            Réinitialiser
+          </button>
+          <button mat-flat-button color="primary" type="submit" [disabled]="submitting">
+            <mat-icon>save</mat-icon>
+            <span>Enregistrer</span>
+            <mat-progress-spinner
+              *ngIf="submitting"
+              diameter="18"
+              mode="indeterminate"
+              color="accent"
+            ></mat-progress-spinner>
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
 </section>
