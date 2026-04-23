@@ -1,0 +1,19 @@
+import { Payment } from '../../features/payments/payment.service';
+
+export const PAYMENTS_MOCK: Payment[] = [
+  { id: 'p1', patient: '1', amount: 50.0, method: 'CB', date: '2026-04-01', notes: 'Consultation' },
+  { id: 'p2', patient: '2', amount: 75.5, method: 'Espèces', date: '2026-04-12', notes: 'Analyse' },
+  { id: 'p3', patient: '3', amount: 120.0, method: 'CB', date: '2026-03-22', notes: 'Intervention' },
+  { id: 'p4', patient: '4', amount: 200.0, method: 'CB', date: '2026-04-05', notes: 'Imagerie' },
+  { id: 'p5', patient: '5', amount: 30.0, method: 'Espèces', date: '2026-04-07', notes: 'Vaccination' },
+  { id: 'p6', patient: '6', amount: 85.0, method: 'CB', date: '2026-04-09', notes: 'Consultation' },
+  { id: 'p7', patient: '7', amount: 45.0, method: 'CB', date: '2026-04-10', notes: 'Analyses' },
+  { id: 'p8', patient: '8', amount: 150.0, method: 'CB', date: '2026-04-11', notes: 'Intervention' },
+  { id: 'p9', patient: '9', amount: 60.0, method: 'Espèces', date: '2026-04-13', notes: 'Consultation' },
+  { id: 'p10', patient: '10', amount: 95.0, method: 'CB', date: '2026-04-14', notes: 'Radiologie' },
+  { id: 'p11', patient: '11', amount: 40.0, method: 'Espèces', date: '2026-04-15', notes: 'Consultation' },
+  { id: 'p12', patient: '12', amount: 110.0, method: 'CB', date: '2026-04-16', notes: 'Chirurgie' },
+  { id: 'p13', patient: '13', amount: 70.0, method: 'CB', date: '2026-04-17', notes: 'Analyses' },
+  { id: 'p14', patient: '14', amount: 55.0, method: 'Espèces', date: '2026-04-18', notes: 'Consultation' },
+  { id: 'p15', patient: '15', amount: 125.0, method: 'CB', date: '2026-04-19', notes: 'Intervention' }
+];

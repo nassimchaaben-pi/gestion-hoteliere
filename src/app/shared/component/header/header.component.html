@@ -16,6 +16,7 @@
       [routerLink]="link.path"
       routerLinkActive="active"
       [attr.aria-label]="link.label"
+      (click)="onNav(link.path)"
     >
       <mat-icon>{{ link.icon }}</mat-icon>
       <span>{{ link.label }}</span>
@@ -23,7 +24,7 @@
   </nav>
 
   <div class="quick-actions" *ngIf="!isCompact()">
-    <button mat-stroked-button color="primary" routerLink="/patients/new">
+    <button mat-stroked-button color="primary" routerLink="/patients/new" (click)="onNav('/patients')">
       <mat-icon>person_add</mat-icon>
       Patient
     </button>
@@ -47,13 +48,13 @@
 
 <mat-menu #navMenu="matMenu">
   <ng-container *ngFor="let link of navLinks">
-    <button mat-menu-item [routerLink]="link.path" [attr.aria-label]="link.label">
+    <button mat-menu-item [routerLink]="link.path" [attr.aria-label]="link.label" (click)="onNav(link.path)">
       <mat-icon>{{ link.icon }}</mat-icon>
       <span>{{ link.label }}</span>
     </button>
   </ng-container>
   <mat-divider></mat-divider>
-  <button mat-menu-item routerLink="/patients/new">
+  <button mat-menu-item routerLink="/patients/new" (click)="onNav('/patients')">
     <mat-icon>person_add</mat-icon>
     Patient
   </button>

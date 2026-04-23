@@ -1,3 +1,33 @@
-<section class="payment-detail">
-  <h2>Détails du paiement</h2>
-</section>
+<mat-card class="payment-detail">
+  <mat-card-title>Détails du paiement</mat-card-title>
+
+  <mat-card-content>
+    <div *ngIf="loading">Chargement du paiement...</div>
+    <div *ngIf="error" class="error">{{ error }}</div>
+
+    <div *ngIf="!loading && payment">
+      <dl>
+        <dt>Patient</dt>
+        <dd>{{ patientName || payment.patient }}</dd>
+
+        <dt>Montant</dt>
+        <dd>{{ payment.amount | currency:'EUR' }}</dd>
+
+        <dt>Méthode</dt>
+        <dd>{{ payment.method }}</dd>
+
+        <dt>Date</dt>
+        <dd>{{ payment.date }}</dd>
+
+        <dt>Notes</dt>
+        <dd>{{ payment.notes || '—' }}</dd>
+      </dl>
+    </div>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <a mat-button [routerLink]="['/payments', payment?.id, 'edit']">✏️ Modifier</a>
+    <button mat-button (click)="delete()">Supprimer</button>
+    <a mat-button routerLink="/payments">↩️ Retour</a>
+  </mat-card-actions>
+</mat-card>

@@ -1,4 +1,56 @@
 <section class="patients-list">
   <h2>Liste des patients</h2>
-  <!-- TODO: ajouter la table / liste -->
+  <div class="actions">
+    <a routerLink="/patients/new" class="new-link">➕ Nouveau patient</a>
+  </div>
+  <div *ngIf="loading" class="loading">Chargement...</div>
+  <div *ngIf="error" class="error">{{ error }}</div>
+
+  <div *ngIf="!loading && !error">
+    <div class="table-tools">
+      <input placeholder="Rechercher" (input)="applyFilter($event)" />
+    </div>
+
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z2">
+
+      <ng-container matColumnDef="firstName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Prénom</th>
+        <td mat-cell *matCellDef="let row">{{ row.firstName }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="lastName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Nom</th>
+        <td mat-cell *matCellDef="let row">{{ row.lastName }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="dob">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Date de naissance</th>
+        <td mat-cell *matCellDef="let row">{{ row.dob }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>E-mail</th>
+        <td mat-cell *matCellDef="let row">{{ row.email }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let row">
+          <a [routerLink]="['/patients', row.id]" mat-button>
+            <mat-icon>visibility</mat-icon>
+          </a>
+          <a [routerLink]="['/patients', row.id, 'edit']" mat-button>
+            <mat-icon>edit</mat-icon>
+          </a>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+
+  <div *ngIf="!loading && !error && !dataSource.data.length" class="empty">Aucun patient trouvé.</div>
 </section>

@@ -22,12 +22,18 @@ export const routes: Routes = [
 			{ path: '', redirectTo: 'patients', pathMatch: 'full' },
 			{ path: 'patients', component: PatientsListComponent },
 			{ path: 'patients/new', component: PatientFormComponent },
+			{ path: 'patients/:id', component: PatientDetailComponent },
+			{ path: 'patients/:id/edit', component: PatientFormComponent, data: { prerender: false } },
 
 			{ path: 'appointments', component: AppointmentsListComponent },
 			{ path: 'appointments/new', component: AppointmentFormComponent },
+			{ path: 'appointments/:id', component: AppointmentDetailComponent, data: { prerender: false } },
+			{ path: 'appointments/:id/edit', component: AppointmentFormComponent, data: { prerender: false } },
 
 			{ path: 'payments', component: PaymentsListComponent },
-			{ path: 'payments/new', component: PaymentFormComponent }
+			{ path: 'payments/new', component: PaymentFormComponent },
+			{ path: 'payments/:id', component: PaymentDetailComponent, data: { prerender: false } },
+			{ path: 'payments/:id/edit', component: PaymentFormComponent, data: { prerender: false } }
 		]
 	},
 	{

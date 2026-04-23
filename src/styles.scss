@@ -33,6 +33,11 @@ body {
 	color: #0f172a;
 }
 
+/* Ensure root elements occupy full height so layouts using 100% height work as expected */
+html, body, app-root {
+	height: 100%;
+}
+
 a {
 	color: inherit;
 	text-decoration: none;

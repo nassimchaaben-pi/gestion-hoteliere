@@ -12,6 +12,11 @@ const browserDistFolder = join(import.meta.dirname, '../browser');
 const app = express();
 const angularApp = new AngularNodeAppEngine();
 
+// The application is front-end only in this mode. API endpoints were removed
+// and the app consumes static mock JSON from `/assets/mock/*.json` and a
+// client-side localStorage-backed store for create/update/delete.
+
+
 /**
  * Example Express Rest API endpoints can be defined here.
  * Uncomment and define endpoints as necessary.

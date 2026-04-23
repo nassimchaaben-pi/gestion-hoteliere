@@ -1,4 +1,33 @@
-<section class="patient-detail">
-  <h2>Détails du patient</h2>
-  <!-- TODO: afficher les informations du patient -->
-</section>
+<mat-card class="patient-detail">
+  <mat-card-title>{{ patient?.firstName }} {{ patient?.lastName }}</mat-card-title>
+
+  <mat-card-content>
+    <div *ngIf="loading">Chargement du patient...</div>
+    <div *ngIf="error" class="error">{{ error }}</div>
+
+    <div *ngIf="!loading && patient">
+      <dl>
+        <dt>Prénom</dt>
+        <dd>{{ patient.firstName }}</dd>
+
+        <dt>Nom</dt>
+        <dd>{{ patient.lastName }}</dd>
+
+        <dt>Date de naissance</dt>
+        <dd>{{ patient.dob }}</dd>
+
+        <dt>E-mail</dt>
+        <dd>{{ patient.email }}</dd>
+
+        <dt>Téléphone</dt>
+        <dd>{{ patient.phone || '—' }}</dd>
+      </dl>
+    </div>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <a mat-button [routerLink]="['/patients', patient?.id, 'edit']">✏️ Modifier</a>
+    <button mat-button (click)="delete()">Supprimer</button>
+    <a mat-button routerLink="/patients">↩️ Retour à la liste</a>
+  </mat-card-actions>
+</mat-card>

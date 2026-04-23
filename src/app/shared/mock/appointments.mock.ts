@@ -1,0 +1,24 @@
+import { Appointment } from '../../features/appointments/appointment.service';
+
+export const APPOINTMENTS_MOCK: Appointment[] = [
+  { id: 'a1', patient: '1', date: '2026-05-02', time: '09:30', reason: 'Contrôle général' },
+  { id: 'a2', patient: '2', date: '2026-05-10', time: '14:00', reason: 'Suivi' },
+  { id: 'a3', patient: '3', date: '2026-05-11', time: '11:00', reason: 'Vaccination' },
+  { id: 'a4', patient: '4', date: '2026-05-12', time: '16:30', reason: 'Consultation en ligne' },
+  { id: 'a5', patient: '5', date: '2026-04-20', time: '10:00', reason: 'Analyses' },
+  { id: 'a6', patient: '6', date: '2026-04-22', time: '15:00', reason: 'Suivi cardiologie' },
+  { id: 'a7', patient: '7', date: '2026-04-25', time: '08:30', reason: 'Vaccin' },
+  { id: 'a8', patient: '8', date: '2026-04-26', time: '13:45', reason: 'Consultation' },
+  { id: 'a9', patient: '9', date: '2026-04-27', time: '09:15', reason: 'Dentisterie' },
+  { id: 'a10', patient: '10', date: '2026-04-28', time: '11:00', reason: 'Contrôle' },
+  { id: 'a11', patient: '11', date: '2026-05-03', time: '10:30', reason: 'Gynécologie' },
+  { id: 'a12', patient: '12', date: '2026-05-04', time: '12:00', reason: 'Radiologie' },
+  { id: 'a13', patient: '13', date: '2026-05-05', time: '14:30', reason: 'Chirurgie - pré-op' },
+  { id: 'a14', patient: '14', date: '2026-05-06', time: '16:00', reason: 'Consultation' },
+  { id: 'a15', patient: '15', date: '2026-05-07', time: '09:00', reason: 'Urgence légère' },
+  { id: 'a16', patient: '1', date: '2026-05-08', time: '10:00', reason: 'Suivi' },
+  { id: 'a17', patient: '2', date: '2026-05-09', time: '11:15', reason: 'Contrôle' },
+  { id: 'a18', patient: '3', date: '2026-05-13', time: '15:45', reason: 'Consultation' },
+  { id: 'a19', patient: '4', date: '2026-05-14', time: '08:45', reason: 'Dentisterie' },
+  { id: 'a20', patient: '5', date: '2026-05-15', time: '13:00', reason: 'Analyses' }
+];

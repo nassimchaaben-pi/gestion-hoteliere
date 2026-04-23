@@ -8,6 +8,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatDividerModule } from '@angular/material/divider';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { RefreshService } from '../../services/refresh.service';
 
 @Component({
   selector: 'app-header',
@@ -36,10 +37,15 @@ export class HeaderComponent {
 
   readonly isCompact = signal(false);
 
-  constructor(private breakpointObserver: BreakpointObserver) {
+  constructor(private breakpointObserver: BreakpointObserver, private refresh: RefreshService) {
     this.breakpointObserver
       .observe(['(max-width: 1180px)'])
       .pipe(takeUntilDestroyed())
       .subscribe(({ matches }) => this.isCompact.set(matches));
+  }
+
+  onNav(path: string) {
+    // notify listeners that a navigation/refresh was requested for this path
+    this.refresh.refresh(path || '');
   }
 }

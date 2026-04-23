@@ -1,3 +1,30 @@
-<section class="appointment-detail">
-  <h2>Détails du rendez-vous</h2>
-</section>
+<mat-card class="appointment-detail">
+  <mat-card-title>Détails du rendez-vous</mat-card-title>
+
+  <mat-card-content>
+    <div *ngIf="loading">Chargement du rendez-vous...</div>
+    <div *ngIf="error" class="error">{{ error }}</div>
+
+    <div *ngIf="!loading && appointment">
+      <dl>
+        <dt>Patient</dt>
+        <dd>{{ patientName || appointment.patient }}</dd>
+
+        <dt>Date</dt>
+        <dd>{{ appointment.date }}</dd>
+
+        <dt>Heure</dt>
+        <dd>{{ appointment.time }}</dd>
+
+        <dt>Motif</dt>
+        <dd>{{ appointment.reason || '—' }}</dd>
+      </dl>
+    </div>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <a mat-button [routerLink]="['/appointments', appointment?.id, 'edit']">✏️ Modifier</a>
+    <button mat-button (click)="delete()">Supprimer</button>
+    <a mat-button routerLink="/appointments">↩️ Retour</a>
+  </mat-card-actions>
+</mat-card>
